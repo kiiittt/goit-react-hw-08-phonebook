@@ -1,37 +1,30 @@
-import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
+import React from 'react';
 import css from './ContactList.module.css';
 import PropTypes from 'prop-types';
 
-export class ContactList extends Component {
-  contactId = nanoid();
-
-  handleDelete = contactId => {
-    this.props.onDeleteContact(contactId);
+const ContactList = ({ filteredContacts, onDeleteContact }) => {
+  const handleDelete = contactId => {
+    onDeleteContact(contactId);
   };
 
-  render() {
-    const { filteredContacts } = this.props;
-
-    return (
-      <ul className={css.ul}>
-        {filteredContacts.map((contact, index) => (
-          <li key={index} className={css.li}>
-            <span className={css.name}>{contact.name}:</span>
-            <span className={css.tel}>{contact.number}</span>
-            <button
-              className={css.btn}
-              type="button"
-              onClick={() => this.handleDelete(contact.id)}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
-    );
-  }
-}
+  return (
+    <ul className={css.ul}>
+      {filteredContacts.map(contact => (
+        <li key={contact.id} className={css.li}>
+          <span className={css.name}>{contact.name}:</span>
+          <span className={css.tel}>{contact.number}</span>
+          <button
+            className={css.btn}
+            type="button"
+            onClick={() => handleDelete(contact.id)}
+          >
+            Delete
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 ContactList.propTypes = {
   filteredContacts: PropTypes.arrayOf(
@@ -43,3 +36,5 @@ ContactList.propTypes = {
   ).isRequired,
   onDeleteContact: PropTypes.func.isRequired,
 };
+
+export default ContactList;

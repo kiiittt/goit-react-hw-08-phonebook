@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Fiter';
+import ContactForm from './ContactForm/ContactForm';
+import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
 import css from './App.module.css';
+import { nanoid } from 'nanoid';
 
 const App = () => {
   const [contacts, setContacts] = useState([
@@ -13,8 +14,6 @@ const App = () => {
   ]);
 
   const [searchName, setSearchName] = useState('');
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
 
   const storageKey = 'contacts';
 
@@ -29,28 +28,23 @@ const App = () => {
     localStorage.setItem(storageKey, JSON.stringify(contacts));
   }, [contacts]);
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    if (name === 'name') {
-      setName(value);
-    } else if (name === 'number') {
-      setNumber(value);
+  const handleSubmit = (name, number) => {
+    if (name === '' || number === '') {
+      alert('Please enter name and number');
+      return;
     }
-  };
-
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    console.log(`You add: ${name} ${number}`);
-    const newContact = { name, number };
     const isDuplicate = contacts.some(
-      contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+      contact => contact.name.toLowerCase() === name.toLowerCase()
     );
     if (isDuplicate) {
-      alert(`${newContact.name} already exists!`);
+      alert(`${name} already exists!`);
     } else {
-      setContacts(prevContacts => [...prevContacts, newContact]);
-      setName('');
-      setNumber('');
+      const newContact = { id: nanoid(), name, number };
+      setContacts(prevContacts => {
+        const updatedContacts = [...prevContacts, newContact];
+        localStorage.setItem(storageKey, JSON.stringify(updatedContacts));
+        return updatedContacts;
+      });
     }
   };
 
@@ -84,18 +78,9 @@ const App = () => {
       }}
     >
       <h1 className={css.title}>Phonebook</h1>
-      <ContactForm
-        name={name}
-        number={number}
-        onChange={handleChange}
-        onSubmit={handleSubmit}
-      />
+      <ContactForm onSubmit={handleSubmit} />
       <h1 className={css.title}>Contacts</h1>
-      <Filter
-        searchName={searchName}
-        filteredContacts={filteredContacts}
-        onSearchChange={handleSearchChange}
-      />
+      <Filter searchName={searchName} onSearchChange={handleSearchChange} />
       <ContactList
         contacts={contacts}
         filteredContacts={filteredContacts}
