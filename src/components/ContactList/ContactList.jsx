@@ -1,28 +1,51 @@
 import React from 'react';
-import css from './ContactList.module.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { deleteContact } from '../../redux/contactsSlice';
+import { getContacts, getFilter } from 'redux/selectors';
 import PropTypes from 'prop-types';
+import css from './ContactList.module.css';
 
-const ContactList = ({ filteredContacts, onDeleteContact }) => {
-  const handleDelete = contactId => {
-    onDeleteContact(contactId);
+
+const notify = {
+  error: message => toast.error(message),
+  success: message => toast.success(message),
+};
+
+const ContactList = () => {
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+
+  const handleDelete = id => {
+    dispatch(deleteContact(id));
+    notify.success('Contact deleted');
   };
 
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
   return (
-    <ul className={css.ul}>
-      {filteredContacts.map(contact => (
-        <li key={contact.id} className={css.li}>
-          <span className={css.name}>{contact.name}:</span>
-          <span className={css.tel}>{contact.number}</span>
-          <button
-            className={css.btn}
-            type="button"
-            onClick={() => handleDelete(contact.id)}
-          >
-            Delete
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ToastContainer />
+      <ul className={css.ul}>
+        {filteredContacts.map(contact => (
+          <li key={contact.id} className={css.li}>
+            <span className={css.name}>{contact.name}:</span>
+            <span className={css.tel}>{contact.number}</span>
+            <button
+              className={css.btn}
+              type="button"
+              onClick={() => handleDelete(contact.id)}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
