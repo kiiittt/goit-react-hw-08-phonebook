@@ -5,7 +5,6 @@ import { addContact } from '../../redux/contactsSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getContacts } from '../../redux/selectors';
-import PropTypes from 'prop-types';
 import css from './ContactForm.module.css'
 
 const notify = {
@@ -94,8 +93,5 @@ const ContactForm = () => {
   );
 };
 
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
 
 export default ContactForm;
