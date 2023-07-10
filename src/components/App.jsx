@@ -2,9 +2,17 @@ import React from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchContacts } from '../redux/operations';
 import css from './App.module.css';
 
-const App = () => {
+export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <div
@@ -18,14 +26,10 @@ const App = () => {
       }}
     >
       <h1 className={css.title}>Phonebook</h1>
-      <ContactForm  />
+      <ContactForm />
       <h1 className={css.title}>Contacts</h1>
-      <Filter  />
-      <ContactList
-
-      />
+      <Filter />
+      <ContactList />
     </div>
   );
 };
-
-export default App;

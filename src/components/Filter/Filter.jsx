@@ -1,15 +1,14 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setFilter } from '../../redux/contactsSlice';
-import { getFilter } from '../../redux/selectors';
+import { useDispatch } from 'react-redux';
+import { setFilter } from 'redux/filterSlice';
 import css from './Filter.module.css';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const value = useSelector(getFilter);
 
-  const handleChange = e => {
-    dispatch(setFilter(e.target.value));
+  const handleFilterChange = event => {
+    const filterValue = event.target.value;
+    dispatch(setFilter(filterValue));
   };
 
   return (
@@ -18,14 +17,11 @@ const Filter = () => {
       <input
         className={css.input}
         type="text"
-        value={value}
-        onChange={handleChange}
+        onChange={handleFilterChange}
         placeholder="search..."
       />
     </label>
   );
 };
-
-
 
 export default Filter;
