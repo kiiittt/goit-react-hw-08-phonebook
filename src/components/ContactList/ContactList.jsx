@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import css from './ContactList.module.css';
 import { getContacts, getStatusFilter } from 'redux/selectors';
+import DeleteConfirmation from './DeleteConfirmation/DeleteConfirmation';
+
 
 // const notify = {
 //   error: message => toast.error(message),
@@ -20,9 +22,11 @@ const ContactList = () => {
 
   const handleDeleteClick = () => {
     setIsConfirmingDelete(true);
-    isConfirmingDelete(true);
   };
 
+  const handleCancelDelete = () => {
+    setIsConfirmingDelete(false);
+  };
 
   return (
     <div>
@@ -38,10 +42,15 @@ const ContactList = () => {
             >
               Delete
             </button>
+            {isConfirmingDelete && (
+              <DeleteConfirmation
+                contact={contact}
+                onCancel={handleCancelDelete}
+              />
+            )}
           </li>
         ))}
       </ul>
-      
     </div>
   );
 };
