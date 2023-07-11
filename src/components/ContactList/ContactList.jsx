@@ -18,9 +18,9 @@ const ContactList = () => {
 
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
 
-
   const handleDeleteClick = () => {
     setIsConfirmingDelete(true);
+    isConfirmingDelete(true);
   };
 
 
@@ -41,6 +41,7 @@ const ContactList = () => {
           </li>
         ))}
       </ul>
+      
     </div>
   );
 };
