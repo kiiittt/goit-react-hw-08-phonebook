@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchContacts } from 'redux/contacts/operations';
 import css from './ContactList.module.css';
-import { getContacts, getStatusFilter } from 'redux/selectors';
+import { getContacts, getStatusFilter } from '../../redux/contacts/selectors';
 import DeleteConfirmation from './DeleteConfirmation/DeleteConfirmation';
 
 
@@ -11,8 +12,15 @@ import DeleteConfirmation from './DeleteConfirmation/DeleteConfirmation';
 // };
 
 const ContactList = () => {
+  const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
   const filter = useSelector(getStatusFilter);
+  // const isLoading = useSelector(getIsLoading);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
 
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())

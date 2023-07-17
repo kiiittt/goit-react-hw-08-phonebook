@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/operations';
+import { addContact } from '../../redux/contacts/operations';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getContacts, getError } from 'redux/selectors';
+import { getContacts, getError } from '../../redux/contacts/selectors';
 import css from './ContactForm.module.css';
 
 const notify = {
