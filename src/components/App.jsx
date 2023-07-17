@@ -9,18 +9,21 @@ import { refreshUser } from 'redux/auth/operations';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import { useAuth } from 'redux/auth/useAuth';
+import RegisterPage from './Register/Register';
+import ContactsPage from '../pages/ContactsPage';
+import LoginPage from '../pages/Login';
 
 
-const RegisterPage = lazy(() =>
-  import('../pages/RegisterPage')
-);
-const ContactsPage = lazy(() =>
-  import('../pages/ContactsPage')
-);
+// const RegisterPage = lazy(() =>
+//   import('../pages/RegisterPage')
+// );
+// const ContactsPage = lazy(() =>
+//   import('../pages/ContactsPage')
+// );
 
-const LoginPage = lazy(() =>
-  import('../pages/Login')
-);
+// const LoginPage = lazy(() =>
+//   import('../pages/Login')
+// );
 
 export const App = () => {
   const dispatch = useDispatch();
