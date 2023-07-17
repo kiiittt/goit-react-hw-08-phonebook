@@ -1,13 +1,23 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-07-phonebook/static/css/main.cbce510e.css",
-    "main.js": "/goit-react-hw-07-phonebook/static/js/main.0c83e07e.js",
-    "index.html": "/goit-react-hw-07-phonebook/index.html",
-    "main.cbce510e.css.map": "/goit-react-hw-07-phonebook/static/css/main.cbce510e.css.map",
-    "main.0c83e07e.js.map": "/goit-react-hw-07-phonebook/static/js/main.0c83e07e.js.map"
+    "main.css": "/goit-react-hw-08-phonebook/static/css/main.98ec47ca.css",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.d4403896.js",
+    "register-page.js": "/goit-react-hw-08-phonebook/static/js/register-page.eadb8236.chunk.js",
+    "contacts-page.css": "/goit-react-hw-08-phonebook/static/css/contacts-page.a67ba103.chunk.css",
+    "contacts-page.js": "/goit-react-hw-08-phonebook/static/js/contacts-page.fed9799c.chunk.js",
+    "login-page.js": "/goit-react-hw-08-phonebook/static/js/login-page.46a60971.chunk.js",
+    "static/js/142.898e24d5.chunk.js": "/goit-react-hw-08-phonebook/static/js/142.898e24d5.chunk.js",
+    "index.html": "/goit-react-hw-08-phonebook/index.html",
+    "main.98ec47ca.css.map": "/goit-react-hw-08-phonebook/static/css/main.98ec47ca.css.map",
+    "main.d4403896.js.map": "/goit-react-hw-08-phonebook/static/js/main.d4403896.js.map",
+    "register-page.eadb8236.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/register-page.eadb8236.chunk.js.map",
+    "contacts-page.a67ba103.chunk.css.map": "/goit-react-hw-08-phonebook/static/css/contacts-page.a67ba103.chunk.css.map",
+    "contacts-page.fed9799c.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/contacts-page.fed9799c.chunk.js.map",
+    "login-page.46a60971.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/login-page.46a60971.chunk.js.map",
+    "142.898e24d5.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/142.898e24d5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cbce510e.css",
-    "static/js/main.0c83e07e.js"
+    "static/css/main.98ec47ca.css",
+    "static/js/main.d4403896.js"
   ]
 }
