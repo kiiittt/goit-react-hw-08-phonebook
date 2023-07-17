@@ -4,27 +4,22 @@ import { useEffect, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './Layout/Layout';
 import Home from './Home/Home';
-// import RegisterPage from './Register/Register';
-// import ContactsPage from '../pages/ContactsPage';
-// import NotFound from './NotFound/NotFound';
-// import LoginPage from '../pages/Login';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
-// import { useAuth } from 'redux/auth/useAuth';
-// import Loader from './Loader/Loader';
-// import ErrorPage from './ErrorPage/ErrorPage';
+import { useAuth } from 'redux/auth/useAuth';
+
 
 const RegisterPage = lazy(() =>
-  import('../pages/RegisterPage' /* webpackChunkName: "register-page" */)
+  import('../pages/RegisterPage')
 );
 const ContactsPage = lazy(() =>
-  import('../pages/ContactsPage' /* webpackChunkName: "contacts-page" */)
+  import('../pages/ContactsPage')
 );
 
 const LoginPage = lazy(() =>
-  import('../pages/Login' /* webpackChunkName: "login-page" */)
+  import('../pages/Login')
 );
 
 export const App = () => {
@@ -33,10 +28,10 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  // const { isRefreshing, error } = useAuth();
+  const { isRefreshing, error } = useAuth();
 
-  // console.log('isRefreshing', isRefreshing);
-  // console.log('error', error);
+  console.log('isRefreshing', isRefreshing);
+  console.log('error', error);
 
   return (
     <div>

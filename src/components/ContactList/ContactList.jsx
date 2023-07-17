@@ -1,65 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/contacts/operations';
-import css from './ContactList.module.css';
-import { getContacts, getStatusFilter } from '../../redux/contacts/selectors';
-import DeleteConfirmation from './DeleteConfirmation/DeleteConfirmation';
-
-
-// const notify = {
-//   error: message => toast.error(message),
-//   success: message => toast.success(message),
-// };
+import ContactItem from 'components/ContactItem/ContactItem';
+import { getContacts, getIsLoading } from 'redux/contacts/selectors';
+import { getStatusFilter } from 'redux/contacts/selectors';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import CircularProgress from '@mui/material/CircularProgress';
+import SearchIcon from '@mui/icons-material/Search';
 
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
   const filter = useSelector(getStatusFilter);
-  // const isLoading = useSelector(getIsLoading);
+  const isLoading = useSelector(getIsLoading);
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  if (!contacts) {
+    return <CircularProgress />;
+  }
 
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
-  const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
-
-  const handleDeleteClick = () => {
-    setIsConfirmingDelete(true);
-  };
-
-  const handleCancelDelete = () => {
-    setIsConfirmingDelete(false);
-  };
-
   return (
-    <div>
-      <ul className={css.ul}>
+    <Box sx={{ padding: '20px' }}>
+      <Typography variant="h5" sx={{ marginBottom: '20px' }}>
+        <SearchIcon sx={{ marginRight: '10px' }} />
+        Contact List
+      </Typography>
+      <List>
         {filteredContacts.map(contact => (
-          <li key={contact.id} contact={contact} className={css.li}>
-            <span className={css.name}>{contact.name}:</span>
-            <span className={css.tel}>{contact.number}</span>
-            <button
-              className={css.btn}
-              type="button"
-              onClick={() => handleDeleteClick(contact.id)}
-            >
-              Delete
-            </button>
-            {isConfirmingDelete && (
-              <DeleteConfirmation
-                contact={contact}
-                onCancel={handleCancelDelete}
-              />
-            )}
-          </li>
+          <ContactItem key={contact.id} contact={contact} />
         ))}
-      </ul>
-    </div>
+      </List>
+      {isLoading && (
+        <Box
+          sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}
+        >
+          <CircularProgress size={20} />
+          <Typography variant="body2" sx={{ marginLeft: '10px' }}>
+            Updating list...
+          </Typography>
+        </Box>
+      )}
+    </Box>
   );
 };
 
