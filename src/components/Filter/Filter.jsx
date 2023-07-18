@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setFilter } from 'redux/contacts/filterSlice';
 import css from './Filter.module.css';
+import SearchIcon from '@mui/icons-material/Search';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,10 @@ const Filter = () => {
 
   return (
     <label className={css.label}>
-      <span className={css.findTitle}>Find contacts by name</span>
+      <span className={css.findTitle}>
+        <SearchIcon sx={{ marginRight: '10px' }} />
+        Find contacts by name
+      </span>
       <input
         className={css.input}
         type="text"

@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import CircularProgress from '@mui/material/CircularProgress';
-import SearchIcon from '@mui/icons-material/Search';
+
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -29,10 +29,9 @@ const ContactList = () => {
   );
 
   return (
-    <Box sx={{ padding: '20px' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
       <Typography variant="h5" sx={{ marginBottom: '20px' }}>
-        <SearchIcon sx={{ marginRight: '10px' }} />
-        Contact List
+        Contact List:
       </Typography>
       <List>
         {filteredContacts.map(contact => (

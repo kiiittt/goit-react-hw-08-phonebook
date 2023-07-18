@@ -8,10 +8,11 @@ import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
-// import { useAuth } from 'redux/auth/useAuth';
+import { useAuth } from 'redux/auth/useAuth';
 import RegisterPage from './Register/Register';
 import ContactsPage from '../pages/ContactsPage';
 import LoginPage from '../pages/Login';
+import Loader from './Loader/Loader';
 
 
 // const RegisterPage = lazy(() =>
@@ -31,13 +32,14 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  // const { isRefreshing, error } = useAuth();
+  const { isRefreshing } = useAuth();
 
   // console.log('isRefreshing', isRefreshing);
   // console.log('error', error);
 
-  return (
-    <div>
+  return isRefreshing ? (
+    <Loader />
+  ) : (<div>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
