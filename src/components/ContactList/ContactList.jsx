@@ -30,7 +30,7 @@ const ContactList = () => {
 
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-      <Typography variant="h5" sx={{ marginBottom: '20px' }}>
+      <Typography variant="h5" sx={{ marginBottom: '20px', color: 'dimgray' }}>
         Contact List:
       </Typography>
       <List>
