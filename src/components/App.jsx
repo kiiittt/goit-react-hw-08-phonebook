@@ -15,6 +15,7 @@ import LoginPage from '../pages/Login';
 import Loader from './Loader/Loader';
 
 
+
 // const RegisterPage = lazy(() =>
 //   import('../pages/RegisterPage')
 // );
