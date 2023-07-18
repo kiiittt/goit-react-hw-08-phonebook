@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setFilter } from 'redux/contacts/filterSlice';
 import css from './Filter.module.css';
 import SearchIcon from '@mui/icons-material/Search';
+import TextField from '@mui/material/TextField';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -18,11 +19,14 @@ const Filter = () => {
         <SearchIcon sx={{ marginRight: '10px' }} />
         Find contacts by name
       </span>
-      <input
-        className={css.input}
+      <TextField
         type="text"
         onChange={handleFilterChange}
         placeholder="search..."
+        margin="normal"
+        sx={{
+          width: '320px', alignSelf: ' center'
+        }}
       />
     </label>
   );

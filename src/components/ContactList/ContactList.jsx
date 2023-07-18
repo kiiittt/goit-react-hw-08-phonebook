@@ -29,8 +29,17 @@ const ContactList = () => {
   );
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-      <Typography variant="h5" sx={{ marginBottom: '20px', color: 'dimgray' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '360px',
+        padding: '20px',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+      }}
+    >
+      <Typography variant="h5" sx={{ marginBottom: '20px', color: 'dimgray', alignSelf: 'center' }}>
         Contact List:
       </Typography>
       <List>
@@ -40,7 +49,12 @@ const ContactList = () => {
       </List>
       {isLoading && (
         <Box
-          sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignSelf: 'center',
+            marginTop: '20px',
+          }}
         >
           <CircularProgress size={20} />
           <Typography variant="body2" sx={{ marginLeft: '10px' }}>
